@@ -200,9 +200,6 @@ public class EarthquakeCityMap extends PApplet {
 			}
 		}
 		
-		// TODO: Implement this method
-		// Hint: You probably want a helper method or two to keep this code
-		// from getting too long/disorganized
 	}
 	
 	
