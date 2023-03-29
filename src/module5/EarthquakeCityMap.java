@@ -202,7 +202,6 @@ public class EarthquakeCityMap extends PApplet {
 		
 	}
 	
-	
 	private void checkAroundtheCity(CommonMarker cm) {
 		Location ploc = cm.getLocation();
 		for(Marker efecting : quakeMarkers) {
@@ -213,7 +212,6 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		
 	}
-
 
 	private void checkAroundtheQuake(CommonMarker cm) {
 		Location ploc = cm.getLocation();

@@ -196,6 +196,13 @@ public class EarthquakeCityMap extends PApplet {
 			}
 		}
 	}
+	/*The difference in my implementation in module 5 is:
+	 *I iterate over the markers inside mouseClicked method 
+	 *when i find I set the lastClicked and hide all the markers
+	 *and in my helper methods I only check the around of the
+	 *city or quakes and if they are in the thread zone I set them 
+	 *to unhidden*/
+	
 	
 	// Helper method that will check if a city marker was clicked on
 	// and respond appropriately
