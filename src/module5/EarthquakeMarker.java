@@ -9,6 +9,8 @@ import processing.core.PGraphics;
  * @author Emre Kavak
  *
  */
+
+/*As comparable implemented in subclasses compareTo method must be implemented*/
 public abstract class EarthquakeMarker extends CommonMarker
 {
 	

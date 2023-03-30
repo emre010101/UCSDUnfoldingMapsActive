@@ -9,7 +9,7 @@ import processing.core.PGraphics;
  * @author Your name here
  *
  */
-public class LandQuakeMarker extends EarthquakeMarker {
+public class LandQuakeMarker extends EarthquakeMarker{
 	
 	
 	public LandQuakeMarker(PointFeature quake) {
@@ -34,6 +34,8 @@ public class LandQuakeMarker extends EarthquakeMarker {
 	public String getCountry() {
 		return (String) getProperty("country");
 	}
+	
+	
 
 		
 }

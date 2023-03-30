@@ -38,6 +38,13 @@ public class LandQuakeMarker extends EarthquakeMarker {
 	public String getCountry() {
 		return (String) getProperty("country");
 	}
-
+	@Override
+	public int compareTo(EarthquakeMarker other) {
+		/*If the calling object mag is bigger 1;
+		 * equal 0; and passed object is bigger -1;*/
+		
+		return Float.compare(this.getMagnitude(), other.getMagnitude());
+		
+	}
 		
 }

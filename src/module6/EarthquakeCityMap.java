@@ -36,7 +36,7 @@ public class EarthquakeCityMap extends PApplet {
 	private static final long serialVersionUID = 1L;
 
 	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
-	private static final boolean offline = false;
+	private static final boolean offline = true;
 	
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
@@ -116,7 +116,7 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
-	    printQuakes();
+	    //printQuakes();
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -124,7 +124,10 @@ public class EarthquakeCityMap extends PApplet {
 	    map.addMarkers(quakeMarkers);
 	    map.addMarkers(cityMarkers);
 	    
-	    
+	    /*for(Marker m: quakeMarkers) {
+	    	System.out.println(m);
+	    }*/
+	    sortAndPrint(500);
 	}  // End setup
 	
 	
@@ -135,11 +138,42 @@ public class EarthquakeCityMap extends PApplet {
 		
 	}
 	
-	
+	private void sortAndPrint(int numToPrint) {
+		Object[] myQuakes = quakeMarkers.toArray();
+		//Insertion Sort
+		for(int i=1; i<myQuakes.length; i++) {
+			EarthquakeMarker current = (EarthquakeMarker)myQuakes[i];
+			EarthquakeMarker previous = (EarthquakeMarker)myQuakes[i-1];
+
+			int check = i;
+			while(check>0 && ((current.compareTo(previous))>0)) {
+				/*If left is greater than right, it will swap to most left side where is the value most great*/
+				swap(myQuakes, check, check-1);
+				check--;
+				current = (EarthquakeMarker)myQuakes[check];
+				//To avoid index out of bounds crash 
+				if(check==0) {
+					previous = (EarthquakeMarker)myQuakes[check];
+				}else {
+					previous = (EarthquakeMarker)myQuakes[check-1];
+				}
+			}
+		}//2nd condition to check length of the array
+		for(int print=0; print<numToPrint && print<myQuakes.length; print++) {
+			System.out.println((EarthquakeMarker)myQuakes[print]);
+		}
+	}
 	// TODO: Add the method:
 	//   private void sortAndPrint(int numToPrint)
 	// and then call that method from setUp
 	
+	private void swap(Object[] myQuakes, int first, int second) {
+		EarthquakeMarker temp = (EarthquakeMarker) myQuakes[first];
+		myQuakes[first] = myQuakes[second];
+		myQuakes[second] = temp;
+	}
+
+
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
 	 */
@@ -207,6 +241,7 @@ public class EarthquakeCityMap extends PApplet {
 	// Helper method that will check if a city marker was clicked on
 	// and respond appropriately
 	private void checkCitiesForClick()
+	/*In this helper method both click and thread zone is checked*/
 	{
 		if (lastClicked != null) return;
 		// Loop over the earthquake markers to see if one of them is selected
