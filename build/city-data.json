@@ -1,5 +1,6 @@
 {"type":"FeatureCollection","features":[
 {"type":"Feature","properties":{"name":"Berlin", "population":"3.375", "country" : "Germany", "coastal" : "false"},"geometry":{"type":"Point","coordinates":[13.383, 52.5167]}},
+{"type":"Feature","properties":{"name":"Dublin", "population":"0.58", "country" : "Ireland", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[53.35, -6.2602]}},
 {"type":"Feature","properties":{"name":"Tokyo", "population":"13.35", "country" : "Japan", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[139.6833, 35.6833]}},
 {"type":"Feature","properties":{"name":"New Delhi", "population":"9.88", "country" : "India", "coastal" : "false"},"geometry":{"type":"Point","coordinates":[ 77.2090, 28.6139]}},
 {"type":"Feature","properties":{"name":"Los Angeles", "population":"3.92", "country" : "United States", "coastal" : "true"},"geometry":{"type":"Point","coordinates":[-118.2500, 34.0500]}},

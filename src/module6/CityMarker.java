@@ -70,17 +70,17 @@ public class CityMarker extends CommonMarker {
 		pg.popStyle();
 	}
 	
-	private String getCity()
+	protected String getCity()
 	{
 		return getStringProperty("name");
 	}
 	
-	private String getCountry()
+	protected String getCountry()
 	{
 		return getStringProperty("country");
 	}
 	
-	private float getPopulation()
+	protected float getPopulation()
 	{
 		return Float.parseFloat(getStringProperty("population"));
 	}

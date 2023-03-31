@@ -61,7 +61,7 @@ public class LifeExpectancy extends PApplet {
 		for (Marker marker : countryMarkers) {
 			// Find data for country of the current marker
 			String countryId = marker.getId();
-			System.out.println(lifeExpMap.containsKey(countryId));
+			//System.out.println(lifeExpMap.containsKey(countryId));
 			if (lifeExpMap.containsKey(countryId)) {
 				float lifeExp = lifeExpMap.get(countryId);
 				// Encode value as brightness (values range: 40-90)

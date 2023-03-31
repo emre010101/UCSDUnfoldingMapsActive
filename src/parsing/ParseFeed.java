@@ -266,6 +266,10 @@ public class ParseFeed {
 				// check if value exists for year
 				if(!columns[i].equals("..")) {
 					lifeExpMap.put(columns[3], Float.parseFloat(columns[i]));
+					/*if(columns[3] == "TUR") {
+						System.out.println("test" + columns[i]);
+					}
+					System.out.println(columns[3]);*/
 					
 					// break once most recent data is found
 					break;

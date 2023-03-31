@@ -174,9 +174,26 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		return Float.parseFloat(getProperty("radius").toString());
 	}
 	
+	public String getAge() {
+		return (String) getProperty("age");
+	}
+	
 	public boolean isOnLand()
 	{
 		return isOnLand;
+	}
+
+
+	public int compareToDate(EarthquakeMarker other) {
+		String calling = this.getAge();
+		String ott = other.getAge();
+		if(calling==ott) {
+			return 0;
+		}else if(calling=="Pas Day") {
+			return 1;
+		}else {
+			return -1;
+		}
 	}
 	
 
