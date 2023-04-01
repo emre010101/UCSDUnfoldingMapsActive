@@ -9,14 +9,23 @@ public class sun extends PApplet {
 	
 	PImage photo; //Declaring a new 
 	
+	
 	public void setup()
 	{
+		System.setProperty("https.protocols", "TLSv1.1,TLSv1.2");
+
 		size(400, 400); //canvas size
 		background(255);
 		stroke(0); //set pen color
 		photo = loadImage(url, "jpg");
 		photo.resize(0,height); //width will be decided according to height and height is already size of the canvas
 		image(photo, -170, 0); //
+		
+		 if (photo == null) {
+			 System.err.println("Failed to load image. Please check the URL or file path.");
+			 exit(); // Exit the sketch if the image could not be loaded
+		 }
+		 
 	}
 	
 	public void draw()

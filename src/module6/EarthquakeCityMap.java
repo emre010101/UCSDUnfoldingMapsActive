@@ -1,7 +1,6 @@
 package module6;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -17,6 +16,7 @@ import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import parsing.ParseFeed;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
@@ -36,7 +36,7 @@ public class EarthquakeCityMap extends PApplet {
 	private static final long serialVersionUID = 1L;
 
 	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
-	private static final boolean offline = true;
+	private static final boolean offline = false;
 	
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
@@ -69,6 +69,13 @@ public class EarthquakeCityMap extends PApplet {
 	int numberofQuakesAround;
 	double averageMag;
 	String mostRecent;
+	PImage photo; //Declaring a new 
+	
+	//private String url = "https://media.architecturaldigest.com/photos/5af4aed7da68792ef45e50a4/master/w_3865,h_2576,c_limit/16%20Nacpan.jpg";
+	private String url = "https://res.klook.com/image/upload/Mobile/City/qyxhb8q4t2efvxpa7ew8.jpg";
+	
+	//private String url = "istanbul.jpg";
+	//private String localImageFileName = "istanbul.png";
 	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -90,7 +97,7 @@ public class EarthquakeCityMap extends PApplet {
 		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		//earthquakesURL = "quiz2.atom";
+		earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -100,6 +107,14 @@ public class EarthquakeCityMap extends PApplet {
 		
 		//     STEP 2: read in city data
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
+		for(Feature city : cities) {
+			//System.out.println("Test purpose: " + city.getStringProperty("name"));
+			if(city.getStringProperty("name").equalsIgnoreCase("Istanbul")) {
+				city.addProperty("photo", "/UCSDUnfoldingMaps/data/images/istanbul.png");
+				System.out.println("Url Has been attached succesfully.");
+			}
+		}
+		System.setProperty("https.protocols", "TLSv1.1,TLSv1.2");
 		cityMarkers = new ArrayList<Marker>();
 		for(Feature city : cities) {
 		  cityMarkers.add(new CityMarker(city));
@@ -132,7 +147,7 @@ public class EarthquakeCityMap extends PApplet {
 	    /*for(Marker m: quakeMarkers) {
 	    	System.out.println(m);
 	    }*/
-	    sortAndPrint(5);
+	    sortAndPrint(20);
 	    
 	    
 	}  // End setup
@@ -263,7 +278,8 @@ public class EarthquakeCityMap extends PApplet {
 	 *when i find I set the lastClicked and hide all the markers
 	 *and in my helper methods I only check the around of the
 	 *city or quakes and if they are in the thread zone I set them 
-	 *to unhidden*/
+	 *to unhidden
+	 *In terms of readability my code is easier but UCS is more complex and well structured.*/
 	
 	
 	// Helper method that will check if a city marker was clicked on
@@ -336,10 +352,10 @@ public class EarthquakeCityMap extends PApplet {
 		// Remember you can use Processing's graphics methods here
 		fill(255, 250, 240);
 		
-		int xbase = 10;
+		int xbase = 5;
 		int ybase = 40;
 		
-		rect(xbase, ybase, 200, 250);
+		rect(xbase, ybase, 210, 250);
 		
 		fill(0);
 		textAlign(LEFT, CENTER);
@@ -399,10 +415,10 @@ public class EarthquakeCityMap extends PApplet {
 	private void addCityPopup(CityMarker cityMarker) {
 	    // Customize the popup content with the city's information
 	    fill(255, 250, 240);
-	    int xbase = 10;
+	    int xbase = 5;
 	    int ybase = 315;
 
-	    rect(xbase, ybase, 200, 200);
+	    rect(xbase, ybase, 210, 180);
 
 	    fill(0);
 	    textAlign(LEFT, CENTER);
@@ -419,7 +435,24 @@ public class EarthquakeCityMap extends PApplet {
 	    	text("Most Recent: ", xbase+10, ybase+120);
 	    	text(mostRecent, xbase+10, ybase+140);
 	    }
+	    
+	    //photo = loadImage(url, "jpg");
+	    //String absoluteFilePath = sketchPath(url);
+	    //photo = loadLocalImage(url);
+	    
+	    photo = loadImage(url, "jpg");
+	    //photo = loadImage(localImageFileName);
+	    
+	    if (photo == null) {
+	        System.err.println("Failed to load image. Please check the file path.");
+	        exit(); // Exit the sketch if the image could not be loaded
+	    } else {
+	    	//photo = loadImage(photo, "png");
+	        photo.resize(210, 200);
+	        image(photo, xbase, ybase+200);
+	    }
 	}
+	
 	private void activateCity(CityMarker clickCity) {
 		System.out.println("test in activatecity");
 		this.numberofQuakesAround= findQuakesNumber(clickCity);

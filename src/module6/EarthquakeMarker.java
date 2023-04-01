@@ -189,7 +189,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		String ott = other.getAge();
 		if(calling==ott) {
 			return 0;
-		}else if(calling=="Pas Day") {
+		}else if(calling=="Past Day") {
 			return 1;
 		}else {
 			return -1;
