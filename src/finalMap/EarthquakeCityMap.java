@@ -26,19 +26,13 @@ import processing.core.PImage;
  * */
 public class EarthquakeCityMap extends PApplet {
 	
-	// We will use member variables, instead of local variables, to store the data
-	// that the setUp and draw methods will need to access (as well as other methods)
-	// You will use many of these variables, but the only one you should need to add
-	// code to modify is countryQuakes, where you will store the number of earthquakes
-	// per country.
-	
-	// You can ignore this.  It's to get rid of eclipse warnings
+	// It's to get rid of eclipse warnings
 	private static final long serialVersionUID = 1L;
 
-	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
+	// IF YOU ARE WORKING OFFILINE
 	private static final boolean offline = false;
 	
-	/** This is where to find the local tiles, for working without an Internet connection */
+	/**for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
 	
 	
@@ -71,6 +65,7 @@ public class EarthquakeCityMap extends PApplet {
 	String mostRecent;
 	PImage photo; //Declaring a new 
 	
+	/*local directory didn't work check this later*/
 	//private String url = "https://media.architecturaldigest.com/photos/5af4aed7da68792ef45e50a4/master/w_3865,h_2576,c_limit/16%20Nacpan.jpg";
 	private String url = "https://res.klook.com/image/upload/Mobile/City/qyxhb8q4t2efvxpa7ew8.jpg";
 	
@@ -97,7 +92,7 @@ public class EarthquakeCityMap extends PApplet {
 		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		earthquakesURL = "quiz2.atom";
+		//earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -453,6 +448,7 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 	}
 	
+	/*To call the helper methods to set the global variables*/
 	private void activateCity(CityMarker clickCity) {
 		System.out.println("test in activatecity");
 		this.numberofQuakesAround= findQuakesNumber(clickCity);
@@ -460,6 +456,8 @@ public class EarthquakeCityMap extends PApplet {
 		this.mostRecent = findtheRecent(clickCity);
 	}
 	
+	/*It sorts the earthquakes in the thread zone with descending date
+	 * then first index will be returned with extra information deleted using split*/
 	private String findtheRecent(CityMarker cityMarker) {
 		System.out.println("testin findtherecent");
 		ArrayList<EarthquakeMarker> quakes = findQuakes(cityMarker);
@@ -496,6 +494,7 @@ public class EarthquakeCityMap extends PApplet {
 	}
 
 
+	/**/
 	private double findtheAverage(CityMarker cityMarker) {
 		ArrayList<EarthquakeMarker> quakes = findQuakes(cityMarker);
 		if(quakes.isEmpty()) {return 0.0;}
@@ -523,6 +522,7 @@ public class EarthquakeCityMap extends PApplet {
 		
 	}
 	
+	/*creates arraylist and adds the earthquakes happened around the clicked city*/
 	private ArrayList<EarthquakeMarker> findQuakes(CityMarker cityMarker) {
 		ArrayList<EarthquakeMarker> quakes = new ArrayList<EarthquakeMarker>();
 		//if(quakes.size()==0) {return null;}
